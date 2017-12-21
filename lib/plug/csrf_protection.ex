@@ -101,6 +101,8 @@ defmodule Plug.CSRFProtection do
   dictionary if one does not exist.
   """
   def get_csrf_token do
+    Process.info(self(), :current_stacktrace) |> IO.inspect
+
     if token = Process.get(:plug_masked_csrf_token) do
       token
     else
