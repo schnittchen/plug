@@ -118,6 +118,7 @@ defmodule Plug.CSRFProtection do
   This will force the token to be deleted once the response is sent.
   """
   def delete_csrf_token do
+    IO.puts "in delete_csrf_token"
     Process.delete(:plug_unmasked_csrf_token)
     Process.delete(:plug_masked_csrf_token)
   end
@@ -205,6 +206,7 @@ defmodule Plug.CSRFProtection do
   end
 
   defp ensure_csrf_token(conn, session_key, csrf_token) do
+    IO.puts "in ensure_csrf_token"
     Process.delete(:plug_masked_csrf_token)
     case Process.delete(:plug_unmasked_csrf_token) do
       ^csrf_token -> conn
